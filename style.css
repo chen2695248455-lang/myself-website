@@ -688,6 +688,12 @@ button {
   min-height: 260px;
 }
 
+/* 后两张卡片的内容整体往下移一点，避免标题被圆角遮挡 */
+#about .about-grid .card:nth-child(2),
+#about .about-grid .card:nth-child(3) {
+  padding: 26px 22px 20px;
+}
+
 .tag-row {
   margin-top: 14px;
   display: flex;
