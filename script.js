@@ -187,5 +187,121 @@
     { passive: true }
   );
   updateProgress();
+
+  // ============ 技能进度条动画（进入视口时填充） ============
+  const meters = $$(".meter__bar");
+  if ("IntersectionObserver" in window && meters.length) {
+    const meterIO = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const level = el.getAttribute("data-level");
+          if (level) {
+            el.style.setProperty("--w", `${level}%`);
+          }
+          el.classList.add("is-fill");
+          meterIO.unobserve(el);
+        });
+      },
+      { threshold: 0.4 }
+    );
+    meters.forEach((m) => meterIO.observe(m));
+  } else {
+    meters.forEach((m) => m.classList.add("is-fill"));
+  }
+
+  // ============ AI 粒子背景（轻量级） ============
+  const canvas = /** @type {HTMLCanvasElement | null} */ (document.getElementById("ai-particles"));
+  if (canvas && canvas.getContext) {
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      const dpr = window.devicePixelRatio || 1;
+      const particles = [];
+      const COUNT = 52;
+
+      let width = 0;
+      let height = 0;
+
+      function resize() {
+        width = window.innerWidth || document.documentElement.clientWidth || 0;
+        height = window.innerHeight || document.documentElement.clientHeight || 0;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      function createParticles() {
+        particles.length = 0;
+        for (let i = 0; i < COUNT; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            r: 1.2 + Math.random() * 2.2,
+            vx: (Math.random() - 0.5) * 0.2,
+            vy: (Math.random() - 0.5) * 0.2,
+          });
+        }
+      }
+
+      function step() {
+        ctx.clearRect(0, 0, width, height);
+
+        // 连线
+        for (let i = 0; i < particles.length; i++) {
+          const p1 = particles[i];
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+              const alpha = 1 - dist / 120;
+              ctx.strokeStyle = `rgba(56, 189, 248, ${alpha * 0.18})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // 粒子
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < -20) p.x = width + 20;
+          if (p.x > width + 20) p.x = -20;
+          if (p.y < -20) p.y = height + 20;
+          if (p.y > height + 20) p.y = -20;
+
+          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+          g.addColorStop(0, "rgba(244, 244, 245, 0.9)");
+          g.addColorStop(1, "rgba(59, 130, 246, 0)");
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 2.2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        window.requestAnimationFrame(step);
+      }
+
+      resize();
+      createParticles();
+      step();
+
+      let resizeTimer = 0;
+      window.addEventListener("resize", () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          resize();
+          createParticles();
+        }, 160);
+      });
+    }
+  }
 })();
 
