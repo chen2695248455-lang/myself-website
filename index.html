@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="一个适合自媒体传播的视觉型个人展示简历网站：扁平插画、圆角卡片、大标题高亮、轻量动效。" />
+
+    <!-- 社交分享预览（你后续部署后，把 URL / 图片换成自己的） -->
+    <meta property="og:title" content="Chen · 个人展示主页" />
+    <meta property="og:description" content="像作品集一样的个人简历主页：好看、有记忆点、适合分享。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./og-cover.png" />
+
+    <title>Chen · 个人展示主页</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- 顶部进度条：增加“刷到就想看”的动感（轻量） -->
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- 顶部导航 -->
+    <header class="site-header" id="top">
+      <nav class="nav-shell" aria-label="主导航">
+        <a class="brand" href="#top" data-scroll>
+          <span class="brand__badge" aria-hidden="true">C</span>
+          <span class="brand__text">Chen</span>
+          <span class="brand__sub">Creator Portfolio</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false">
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+        </button>
+
+        <div class="nav-panel" data-nav-panel>
+          <ul class="nav-links" role="list">
+            <li><a class="nav-link" href="#home" data-scroll>首页</a></li>
+            <li><a class="nav-link" href="#about" data-scroll>关于我</a></li>
+            <li><a class="nav-link" href="#skills" data-scroll>技能</a></li>
+            <li><a class="nav-link" href="#projects" data-scroll>项目经历</a></li>
+            <li><a class="nav-link" href="#experience" data-scroll>工作经历</a></li>
+            <li><a class="nav-link" href="#education" data-scroll>教育经历</a></li>
+            <li><a class="nav-link nav-link--cta" href="#contact" data-scroll>联系方式</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero：第一屏必须“海报感 + 高亮块 + 插画卡片” -->
+      <section class="section hero" id="home">
+        <div class="container hero__grid">
+          <div class="hero__copy reveal">
+            <p class="kicker">
+              <span class="pill">可分享</span>
+              <span class="pill pill--soft">有设计感</span>
+              <span class="pill pill--soft">轻量快速</span>
+            </p>
+
+            <h1 class="hero__title">
+              我把简历做成了<br />
+              一张<strong class="hl hl--pink">会被记住</strong>的主页
+            </h1>
+
+            <p class="hero__subtitle">
+              你好，我是 <strong>Chen</strong> —— 一个偏“创作者气质”的前端/内容型创作人。这个页面的目标不是严肃模板，而是
+              <strong class="hl hl--yellow">一眼吸引</strong>、<strong class="hl hl--blue">适合传播</strong>、还能快速了解我的能力与经历。
+            </p>
+
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#projects" data-scroll>
+                <span>查看项目</span>
+                <span class="btn__icon" aria-hidden="true">→</span>
+              </a>
+              <a class="btn btn--ghost" href="#contact" data-scroll>联系我</a>
+            </div>
+
+            <div class="hero__stats">
+              <div class="stat card card--mini">
+                <p class="stat__num">6+</p>
+                <p class="stat__label">项目/作品</p>
+              </div>
+              <div class="stat card card--mini">
+                <p class="stat__num">3+</p>
+                <p class="stat__label">内容平台</p>
+              </div>
+              <div class="stat card card--mini">
+                <p class="stat__num">∞</p>
+                <p class="stat__label">持续进化</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 插画卡片：用纯 SVG 做“扁平插画风”，无需外部图片依赖 -->
+          <div class="hero__art reveal reveal--delay">
+            <div class="art-card card">
+              <div class="art-card__top">
+                <span class="dot dot--red" aria-hidden="true"></span>
+                <span class="dot dot--yellow" aria-hidden="true"></span>
+                <span class="dot dot--green" aria-hidden="true"></span>
+                <span class="art-card__tag">Flat Illustration</span>
+              </div>
+
+              <svg class="illustration" viewBox="0 0 640 520" role="img" aria-label="卡通扁平插画人物">
+                <!-- 背景块 -->
+                <defs>
+                  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#FFE36B" />
+                    <stop offset="1" stop-color="#FFB7D5" />
+                  </linearGradient>
+                </defs>
+                <rect x="28" y="24" width="584" height="420" rx="34" fill="url(#bg)" opacity="0.85" />
+
+                <!-- 左侧装饰卡片 -->
+                <g opacity="0.95">
+                  <rect x="70" y="86" width="180" height="110" rx="22" fill="#ffffff" />
+                  <rect x="92" y="112" width="130" height="14" rx="7" fill="#1F2430" opacity="0.9" />
+                  <rect x="92" y="140" width="96" height="12" rx="6" fill="#1F2430" opacity="0.25" />
+                  <rect x="92" y="160" width="120" height="12" rx="6" fill="#1F2430" opacity="0.25" />
+                </g>
+
+                <!-- 人物主体（极简卡通） -->
+                <g transform="translate(300 96)">
+                  <!-- 影子 -->
+                  <ellipse cx="170" cy="360" rx="120" ry="30" fill="#1F2430" opacity="0.12" />
+
+                  <!-- 身体 -->
+                  <rect x="90" y="210" width="160" height="160" rx="36" fill="#1F2430" />
+                  <rect x="118" y="238" width="104" height="18" rx="9" fill="#FF4D6D" />
+                  <rect x="118" y="270" width="88" height="14" rx="7" fill="#ffffff" opacity="0.7" />
+
+                  <!-- 头 -->
+                  <rect x="112" y="96" width="116" height="120" rx="42" fill="#FFD3B5" />
+                  <!-- 头发 -->
+                  <path
+                    d="M110,140 C118,94 160,76 204,90 C248,104 248,156 228,174 C220,142 196,132 168,132 C140,132 122,142 110,166 Z"
+                    fill="#1F2430"
+                  />
+                  <!-- 眼睛 -->
+                  <circle cx="154" cy="158" r="8" fill="#1F2430" />
+                  <circle cx="202" cy="158" r="8" fill="#1F2430" />
+                  <!-- 腮红 -->
+                  <circle cx="138" cy="176" r="10" fill="#FF4D6D" opacity="0.25" />
+                  <circle cx="218" cy="176" r="10" fill="#FF4D6D" opacity="0.25" />
+                  <!-- 微笑 -->
+                  <path d="M168 186 C178 196 190 196 200 186" stroke="#1F2430" stroke-width="6" stroke-linecap="round" fill="none" />
+
+                  <!-- 手臂 -->
+                  <rect x="52" y="232" width="70" height="22" rx="11" fill="#FFD3B5" />
+                  <rect x="220" y="232" width="70" height="22" rx="11" fill="#FFD3B5" />
+
+                  <!-- 小“贴纸”标签 -->
+                  <g transform="translate(24 56)">
+                    <rect x="0" y="0" width="108" height="40" rx="16" fill="#ffffff" opacity="0.95" />
+                    <rect x="14" y="12" width="80" height="16" rx="8" fill="#3A86FF" opacity="0.9" />
+                  </g>
+                </g>
+
+                <!-- 右下装饰 -->
+                <g opacity="0.9">
+                  <rect x="86" y="250" width="220" height="150" rx="26" fill="#ffffff" />
+                  <rect x="110" y="276" width="120" height="14" rx="7" fill="#1F2430" opacity="0.25" />
+                  <rect x="110" y="302" width="170" height="14" rx="7" fill="#1F2430" opacity="0.25" />
+                  <rect x="110" y="328" width="150" height="14" rx="7" fill="#1F2430" opacity="0.25" />
+                  <rect x="110" y="354" width="96" height="36" rx="16" fill="#FF4D6D" opacity="0.9" />
+                </g>
+              </svg>
+
+              <div class="art-card__bottom">
+                <p class="art-card__headline">把“信息”做成“好看的体验”</p>
+                <p class="art-card__desc">扁平插画 + 圆角卡片 + 高亮排版，让你在 10 秒内记住我。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section" id="about">
+        <div class="container">
+          <header class="section__header reveal">
+            <h2 class="section__title">关于我</h2>
+            <p class="section__lead">更像“个人品牌名片”，而不是传统简历。</p>
+          </header>
+
+          <div class="about-grid">
+            <div class="card about-card reveal">
+              <h3 class="card__title">一句话定位</h3>
+              <p class="card__text">
+                我擅长把<strong class="hl hl--yellow">复杂信息</strong>做成<strong class="hl hl--blue">清晰好看</strong>的页面与内容：既能写代码，也能讲故事。
+              </p>
+
+              <div class="tag-row" aria-label="标签">
+                <span class="tag">前端实现</span>
+                <span class="tag">内容表达</span>
+                <span class="tag">审美与排版</span>
+                <span class="tag">交互细节</span>
+              </div>
+            </div>
+
+            <div class="card reveal reveal--delay">
+              <h3 class="card__title">我在意的三件事</h3>
+              <ul class="list">
+                <li><strong>第一眼吸引力</strong>：让用户愿意停留。</li>
+                <li><strong>信息层级</strong>：一句话抓住重点，细节可展开。</li>
+                <li><strong>统一视觉语言</strong>：圆角、卡片、高亮块、留白。</li>
+              </ul>
+            </div>
+
+            <div class="card reveal">
+              <h3 class="card__title">快速信息</h3>
+              <dl class="kv">
+                <div class="kv__row">
+                  <dt>城市</dt>
+                  <dd>中国 ·（可改）</dd>
+                </div>
+                <div class="kv__row">
+                  <dt>方向</dt>
+                  <dd>前端 / 作品集页面 / 内容型表达</dd>
+                </div>
+                <div class="kv__row">
+                  <dt>状态</dt>
+                  <dd>开放合作 / 接项目 / 远程（可改）</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="section section--tint" id="skills">
+        <div class="container">
+          <header class="section__header reveal">
+            <h2 class="section__title">技能</h2>
+            <p class="section__lead">用“视觉化卡片”表达，而不是一长串文字。</p>
+          </header>
+
+          <div class="skills-grid">
+            <article class="skill card reveal">
+              <div class="skill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="icon">
+                  <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="2" />
+                  <path d="M8 10h8M8 14h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3 class="card__title">前端相关</h3>
+              <p class="card__text">HTML / CSS / JavaScript，组件化思维，响应式与动效细节。</p>
+              <div class="meter" aria-label="熟练度">
+                <span class="meter__bar" style="--w: 86%"></span>
+              </div>
+            </article>
+
+            <article class="skill card reveal reveal--delay">
+              <div class="skill__icon skill__icon--pink" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="icon">
+                  <path
+                    d="M12 21s-7-4.35-9.5-8.5C.7 9.5 2.5 6.5 6 6.5c1.9 0 3.1 1.1 4 2.2.9-1.1 2.1-2.2 4-2.2 3.5 0 5.3 3 3.5 6-2.5 4.15-9.5 8.5-9.5 8.5z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3 class="card__title">内容创作相关</h3>
+              <p class="card__text">选题、结构化表达、脚本/文案、数据复盘、持续迭代。</p>
+              <div class="meter"><span class="meter__bar" style="--w: 78%"></span></div>
+            </article>
+
+            <article class="skill card reveal">
+              <div class="skill__icon skill__icon--yellow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="icon">
+                  <path d="M4 20l6-6 4 4 6-10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M4 20h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3 class="card__title">设计审美相关</h3>
+              <p class="card__text">排版层级、留白、色彩对比、卡片化信息呈现、统一视觉。</p>
+              <div class="meter"><span class="meter__bar" style="--w: 72%"></span></div>
+            </article>
+
+            <article class="skill card reveal reveal--delay">
+              <div class="skill__icon skill__icon--blue" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="icon">
+                  <path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M7 7l10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".6" />
+                </svg>
+              </div>
+              <h3 class="card__title">自媒体平台相关</h3>
+              <p class="card__text">平台调性把握、封面/标题策略、互动与增长、内容节奏。</p>
+              <div class="meter"><span class="meter__bar" style="--w: 70%"></span></div>
+            </article>
+
+            <article class="skill card reveal">
+              <div class="skill__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="icon">
+                  <path d="M8 11a4 4 0 118 0v6a2 2 0 11-4 0v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <h3 class="card__title">沟通表达相关</h3>
+              <p class="card__text">把目标说清楚、把方案讲明白、把复杂问题拆成可执行步骤。</p>
+              <div class="meter"><span class="meter__bar" style="--w: 80%"></span></div>
+            </article>
+          </div>
+
+          <div class="note card reveal">
+            <p class="note__title">新手友好提示</p>
+            <p class="note__text">
+              你未来只要改这里的文字：<strong>标题 / 标签 / 技能描述</strong> 就能快速变成你的版本。样式尽量写得清晰可维护。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="section" id="projects">
+        <div class="container">
+          <header class="section__header reveal">
+            <h2 class="section__title">项目经历</h2>
+            <p class="section__lead">卡片式展示，支持按钮与 hover 动效，后续替换内容很方便。</p>
+          </header>
+
+          <div class="cards-grid">
+            <article class="project card reveal">
+              <div class="card__topline">
+                <span class="badge">作品集</span>
+                <span class="badge badge--soft">高转化</span>
+              </div>
+              <h3 class="card__title">视觉型个人主页（本项目）</h3>
+              <p class="card__text">把简历做成“像 Dribbble 一样”的单页作品集：海报感标题 + 扁平插画 + 卡片模块。</p>
+              <p class="card__meta"><strong>技术</strong>：HTML / CSS / JS（无框架）</p>
+              <p class="card__meta"><strong>职责</strong>：信息结构、视觉语言、响应式、交互动效</p>
+              <p class="card__meta"><strong>亮点</strong>：移动端也保持强吸引力，适合社交分享</p>
+              <div class="card__actions">
+                <a class="btn btn--small btn--primary" href="#contact" data-scroll>查看详情</a>
+                <a class="btn btn--small btn--ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </article>
+
+            <article class="project card reveal reveal--delay">
+              <div class="card__topline">
+                <span class="badge badge--blue">工具</span>
+                <span class="badge badge--soft">效率</span>
+              </div>
+              <h3 class="card__title">内容脚本生成器（示例）</h3>
+              <p class="card__text">输入主题与受众，输出结构化脚本：开场钩子、要点、案例、收尾引导。</p>
+              <p class="card__meta"><strong>技术</strong>：JavaScript / 本地存储</p>
+              <p class="card__meta"><strong>职责</strong>：交互流程、表单体验、结果排版</p>
+              <p class="card__meta"><strong>成果</strong>：减少“无从下笔”的时间成本</p>
+              <div class="card__actions">
+                <a class="btn btn--small btn--primary" href="#projects" data-scroll>查看详情</a>
+                <a class="btn btn--small btn--ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </article>
+
+            <article class="project card reveal">
+              <div class="card__topline">
+                <span class="badge badge--yellow">可视化</span>
+                <span class="badge badge--soft">数据</span>
+              </div>
+              <h3 class="card__title">作品数据看板（示例）</h3>
+              <p class="card__text">把播放/互动/收藏等指标做成轻量看板，帮助复盘选题与封面策略。</p>
+              <p class="card__meta"><strong>技术</strong>：HTML / CSS / JS</p>
+              <p class="card__meta"><strong>职责</strong>：信息架构、卡片化组件、视觉层级</p>
+              <p class="card__meta"><strong>亮点</strong>：一屏看懂关键指标，不被表格吓跑</p>
+              <div class="card__actions">
+                <a class="btn btn--small btn--primary" href="#projects" data-scroll>查看详情</a>
+                <a class="btn btn--small btn--ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section section--tint" id="experience">
+        <div class="container">
+          <header class="section__header reveal">
+            <h2 class="section__title">工作经历</h2>
+            <p class="section__lead">用“轻松但专业”的时间线卡片呈现。</p>
+          </header>
+
+          <div class="timeline">
+            <article class="tl-item card reveal">
+              <div class="tl-item__head">
+                <h3 class="card__title">某互联网公司（示例）</h3>
+                <p class="tl-item__meta">前端开发 · 2024 - 2026</p>
+              </div>
+              <ul class="list">
+                <li><strong>负责</strong>：活动页/落地页搭建，组件沉淀与复用</li>
+                <li><strong>优化</strong>：首屏加载与交互细节，提升转化与停留</li>
+                <li><strong>协作</strong>：与设计/运营对齐目标，把需求翻译成可落地方案</li>
+              </ul>
+            </article>
+
+            <article class="tl-item card reveal reveal--delay">
+              <div class="tl-item__head">
+                <h3 class="card__title">内容团队 / 工作室（示例）</h3>
+                <p class="tl-item__meta">内容策划 · 2022 - 2024</p>
+              </div>
+              <ul class="list">
+                <li><strong>策划</strong>：选题库与脚本模板，建立“可复制”的产出流程</li>
+                <li><strong>沉淀</strong>：标题/封面/结构化表达的方法论</li>
+                <li><strong>复盘</strong>：根据数据迭代内容策略，提升效率与稳定性</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section" id="education">
+        <div class="container">
+          <header class="section__header reveal">
+            <h2 class="section__title">教育经历</h2>
+            <p class="section__lead">信息简洁，但保持统一卡片风格。</p>
+          </header>
+
+          <div class="edu-grid">
+            <article class="card reveal">
+              <h3 class="card__title">某某大学（示例）</h3>
+              <p class="card__text">专业：数字媒体 / 计算机相关（可改）</p>
+              <p class="card__meta"><strong>时间</strong>：2018 - 2022</p>
+              <p class="card__meta"><strong>补充</strong>：课程/比赛/作品（可选填写）</p>
+            </article>
+            <article class="card reveal reveal--delay">
+              <h3 class="card__title">自学路径（示例）</h3>
+              <p class="card__text">前端基础、设计审美、内容表达、平台运营的组合型能力。</p>
+              <p class="card__meta"><strong>关键词</strong>：持续学习 / 复盘迭代 / 输出驱动</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section section--tint" id="contact">
+        <div class="container">
+          <header class="section__header reveal">
+            <h2 class="section__title">联系方式</h2>
+            <p class="section__lead">让别人一眼就能找到你，且便于点击/复制。</p>
+          </header>
+
+          <div class="contact-grid">
+            <button class="contact card reveal" type="button" data-copy="hello@example.com" aria-label="点击复制邮箱">
+              <div class="contact__icon" aria-hidden="true">✉</div>
+              <div class="contact__body">
+                <p class="contact__label">邮箱</p>
+                <p class="contact__value">hello@example.com</p>
+              </div>
+              <span class="contact__hint" aria-hidden="true">点击复制</span>
+            </button>
+
+            <button class="contact card reveal reveal--delay" type="button" data-copy="WeChat_ID_Here" aria-label="点击复制微信号">
+              <div class="contact__icon" aria-hidden="true">💬</div>
+              <div class="contact__body">
+                <p class="contact__label">微信</p>
+                <p class="contact__value">WeChat_ID_Here</p>
+              </div>
+              <span class="contact__hint" aria-hidden="true">点击复制</span>
+            </button>
+
+            <a class="contact card reveal" href="https://www.douyin.com/" target="_blank" rel="noreferrer" aria-label="打开抖音主页（示例链接）">
+              <div class="contact__icon" aria-hidden="true">▶</div>
+              <div class="contact__body">
+                <p class="contact__label">抖音</p>
+                <p class="contact__value">/你的抖音链接</p>
+              </div>
+              <span class="contact__hint" aria-hidden="true">点击打开</span>
+            </a>
+
+            <a class="contact card reveal reveal--delay" href="https://space.bilibili.com/" target="_blank" rel="noreferrer" aria-label="打开B站主页（示例链接）">
+              <div class="contact__icon" aria-hidden="true">B</div>
+              <div class="contact__body">
+                <p class="contact__label">B站</p>
+                <p class="contact__value">/你的B站链接</p>
+              </div>
+              <span class="contact__hint" aria-hidden="true">点击打开</span>
+            </a>
+
+            <a class="contact card reveal" href="https://www.xiaohongshu.com/" target="_blank" rel="noreferrer" aria-label="打开小红书主页（示例链接）">
+              <div class="contact__icon" aria-hidden="true">✦</div>
+              <div class="contact__body">
+                <p class="contact__label">小红书</p>
+                <p class="contact__value">/你的小红书链接</p>
+              </div>
+              <span class="contact__hint" aria-hidden="true">点击打开</span>
+            </a>
+
+            <a class="contact card reveal reveal--delay" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="打开GitHub（示例链接）">
+              <div class="contact__icon" aria-hidden="true">⌂</div>
+              <div class="contact__body">
+                <p class="contact__label">GitHub</p>
+                <p class="contact__value">github.com/yourname</p>
+              </div>
+              <span class="contact__hint" aria-hidden="true">点击打开</span>
+            </a>
+          </div>
+
+          <div class="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+            已复制到剪贴板
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p class="footer__left">© <span id="year"></span> Chen. Made to be shared.</p>
+        <p class="footer__right">谢谢来访，愿你今天也做出让人眼前一亮的作品。</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
