@@ -683,6 +683,11 @@ button {
   padding: 22px;
 }
 
+/* 略微放大 About 区的三张卡片，避免文字被压缩不完整 */
+#about .about-grid .card {
+  min-height: 260px;
+}
+
 .tag-row {
   margin-top: 14px;
   display: flex;
