@@ -71,6 +71,31 @@ body {
   pointer-events: none;
 }
 
+/* 鼠标跟随光晕（桌面端）：柔和蓝紫能量圈 */
+.cursor-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 360px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at center, rgba(56, 189, 248, 0.22), transparent 60%),
+    radial-gradient(circle at center, rgba(129, 140, 248, 0.22), transparent 75%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 220ms var(--ease);
+  z-index: 1;
+}
+
+@media (pointer: coarse) {
+  .cursor-light {
+    display: none;
+  }
+}
+
 img,
 svg {
   max-width: 100%;
@@ -316,11 +341,23 @@ button {
   border-radius: 999px;
   border: 1px solid rgba(18, 24, 38, 0.12);
   background: rgba(255, 255, 255, 0.82);
+  transition:
+    background var(--t-mid) var(--ease),
+    border-color var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    transform var(--t-fast) var(--ease);
 }
 
 .pill--soft {
   background: rgba(58, 134, 255, 0.08);
   border-color: rgba(58, 134, 255, 0.18);
+}
+
+.pill:hover {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(129, 140, 248, 0.9);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.85);
+  transform: translateY(-1px);
 }
 
 .hero__title {
@@ -405,12 +442,13 @@ button {
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.95);
 }
 
 .btn:active {
-  transform: translateY(-1px);
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.85);
 }
 
 .btn:focus-visible {
@@ -464,10 +502,17 @@ button {
   box-shadow: 0 20px 45px rgba(15, 23, 42, 0.85);
   position: relative;
   overflow: hidden;
+  transition:
+    transform var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    border-color var(--t-mid) var(--ease),
+    background var(--t-mid) var(--ease);
 }
 
 .card:hover {
   border-color: rgba(59, 130, 246, 0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.98);
 }
 
 .card__title {
@@ -711,6 +756,21 @@ button {
   color: rgba(226, 232, 240, 0.9);
 }
 
+.tag {
+  transition:
+    background var(--t-mid) var(--ease),
+    border-color var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.tag:hover {
+  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.4), rgba(15, 23, 42, 0.98));
+  border-color: rgba(129, 140, 248, 0.9);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.85);
+  transform: translateY(-1px);
+}
+
 .list {
   margin: 12px 0 0 0;
   padding-left: 18px;
@@ -898,6 +958,21 @@ button {
   border-radius: 999px;
   background: rgba(255, 77, 109, 0.12);
   border: 1px solid rgba(255, 77, 109, 0.18);
+}
+
+.badge {
+  transition:
+    background var(--t-mid) var(--ease),
+    border-color var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.badge:hover {
+  background: rgba(248, 113, 113, 0.2);
+  border-color: rgba(248, 113, 113, 0.6);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.85);
+  transform: translateY(-1px);
 }
 
 .badge--soft {

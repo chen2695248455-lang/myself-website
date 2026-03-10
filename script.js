@@ -12,9 +12,47 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
+  const hasFinePointer = window.matchMedia ? window.matchMedia("(pointer: fine)").matches : true;
+  const mouse = { x: 0, y: 0, active: false };
+
   // Footer 年份
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  // ============ 全局鼠标光晕（桌面端） ============
+  const cursorLight = $(".cursor-light");
+  if (hasFinePointer && cursorLight) {
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let cursorVisible = false;
+
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.active = true;
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!cursorVisible) {
+          cursorVisible = true;
+          cursorLight.style.opacity = "1";
+        }
+      },
+      { passive: true }
+    );
+
+    const renderCursor = () => {
+      // 轻微跟随滞后，显得更柔和
+      currentX += (targetX - currentX) * 0.14;
+      currentY += (targetY - currentY) * 0.14;
+      cursorLight.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
+      window.requestAnimationFrame(renderCursor);
+    };
+    renderCursor();
+  }
 
   // ============ 移动端菜单 ============
   const toggle = $(".nav-toggle");
@@ -256,7 +294,14 @@
             const dy = p1.y - p2.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < 120) {
-              const alpha = 1 - dist / 120;
+              let alpha = 1 - dist / 120;
+              // 鼠标附近连线稍微更亮一点
+              if (mouse.active) {
+                const mx = (p1.x + p2.x) / 2 - mouse.x;
+                const my = (p1.y + p2.y) / 2 - mouse.y;
+                const md = Math.sqrt(mx * mx + my * my);
+                if (md < 200) alpha *= 1.6;
+              }
               ctx.strokeStyle = `rgba(56, 189, 248, ${alpha * 0.18})`;
               ctx.lineWidth = 1;
               ctx.beginPath();
@@ -277,12 +322,23 @@
           if (p.y < -20) p.y = height + 20;
           if (p.y > height + 20) p.y = -20;
 
+          let radius = p.r * 2.2;
+          if (mouse.active) {
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 180) {
+              const boost = 1.6 - dist / 180;
+              radius *= 1 + boost * 0.8;
+            }
+          }
+
           const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
           g.addColorStop(0, "rgba(244, 244, 245, 0.9)");
           g.addColorStop(1, "rgba(59, 130, 246, 0)");
           ctx.fillStyle = g;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r * 2.2, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
           ctx.fill();
         }
 
