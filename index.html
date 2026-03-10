@@ -99,7 +99,7 @@
             </div>
           </div>
 
-          <!-- 插画卡片：用纯 SVG 做“扁平插画风”，无需外部图片依赖 -->
+          <!-- 右侧展示卡片：保留科技感卡片，只替换主体展示图为自定义图片 -->
           <div class="hero__art reveal reveal--delay">
             <div class="art-card card">
               <div class="art-card__top">
@@ -109,79 +109,10 @@
                 <span class="art-card__tag">AI · 封号斗罗</span>
               </div>
 
-              <!-- 头像占位：默认使用本地 avatar.jpg，如未提供则可暂时忽略 -->
-              <div class="avatar-ring" aria-label="浅风 Vex 头像">
-                <div class="avatar-ring__inner">
-                  <img src="avatar.jpg" class="avatar-img" alt="浅风 Vex" />
-                  <span class="avatar-ring__initials">Vex</span>
-                </div>
-                <p class="avatar-ring__label">浅风 Vex</p>
+              <!-- 主展示图区域：使用你自己的图片，默认 cover 铺满；如重要内容被裁切，可改为 contain -->
+              <div class="hero-media">
+                <img src="./assets/hero.png" alt="浅风 Vex · 主页展示图" class="hero-media__img" />
               </div>
-
-              <svg class="illustration" viewBox="0 0 640 520" role="img" aria-label="卡通扁平插画人物">
-                <!-- 背景块 -->
-                <defs>
-                  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#FFE36B" />
-                    <stop offset="1" stop-color="#FFB7D5" />
-                  </linearGradient>
-                </defs>
-                <rect x="28" y="24" width="584" height="420" rx="34" fill="url(#bg)" opacity="0.85" />
-
-                <!-- 左侧装饰卡片 -->
-                <g opacity="0.95">
-                  <rect x="70" y="86" width="180" height="110" rx="22" fill="#ffffff" />
-                  <rect x="92" y="112" width="130" height="14" rx="7" fill="#1F2430" opacity="0.9" />
-                  <rect x="92" y="140" width="96" height="12" rx="6" fill="#1F2430" opacity="0.25" />
-                  <rect x="92" y="160" width="120" height="12" rx="6" fill="#1F2430" opacity="0.25" />
-                </g>
-
-                <!-- 人物主体（极简卡通） -->
-                <g transform="translate(300 96)">
-                  <!-- 影子 -->
-                  <ellipse cx="170" cy="360" rx="120" ry="30" fill="#1F2430" opacity="0.12" />
-
-                  <!-- 身体 -->
-                  <rect x="90" y="210" width="160" height="160" rx="36" fill="#1F2430" />
-                  <rect x="118" y="238" width="104" height="18" rx="9" fill="#FF4D6D" />
-                  <rect x="118" y="270" width="88" height="14" rx="7" fill="#ffffff" opacity="0.7" />
-
-                  <!-- 头 -->
-                  <rect x="112" y="96" width="116" height="120" rx="42" fill="#FFD3B5" />
-                  <!-- 头发 -->
-                  <path
-                    d="M110,140 C118,94 160,76 204,90 C248,104 248,156 228,174 C220,142 196,132 168,132 C140,132 122,142 110,166 Z"
-                    fill="#1F2430"
-                  />
-                  <!-- 眼睛 -->
-                  <circle cx="154" cy="158" r="8" fill="#1F2430" />
-                  <circle cx="202" cy="158" r="8" fill="#1F2430" />
-                  <!-- 腮红 -->
-                  <circle cx="138" cy="176" r="10" fill="#FF4D6D" opacity="0.25" />
-                  <circle cx="218" cy="176" r="10" fill="#FF4D6D" opacity="0.25" />
-                  <!-- 微笑 -->
-                  <path d="M168 186 C178 196 190 196 200 186" stroke="#1F2430" stroke-width="6" stroke-linecap="round" fill="none" />
-
-                  <!-- 手臂 -->
-                  <rect x="52" y="232" width="70" height="22" rx="11" fill="#FFD3B5" />
-                  <rect x="220" y="232" width="70" height="22" rx="11" fill="#FFD3B5" />
-
-                  <!-- 小“贴纸”标签 -->
-                  <g transform="translate(24 56)">
-                    <rect x="0" y="0" width="108" height="40" rx="16" fill="#ffffff" opacity="0.95" />
-                    <rect x="14" y="12" width="80" height="16" rx="8" fill="#3A86FF" opacity="0.9" />
-                  </g>
-                </g>
-
-                <!-- 右下装饰 -->
-                <g opacity="0.9">
-                  <rect x="86" y="250" width="220" height="150" rx="26" fill="#ffffff" />
-                  <rect x="110" y="276" width="120" height="14" rx="7" fill="#1F2430" opacity="0.25" />
-                  <rect x="110" y="302" width="170" height="14" rx="7" fill="#1F2430" opacity="0.25" />
-                  <rect x="110" y="328" width="150" height="14" rx="7" fill="#1F2430" opacity="0.25" />
-                  <rect x="110" y="354" width="96" height="36" rx="16" fill="#FF4D6D" opacity="0.9" />
-                </g>
-              </svg>
 
               <div class="art-card__bottom">
                 <p class="art-card__headline">把 AI 能力做成可复制的系统</p>

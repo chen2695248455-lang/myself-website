@@ -271,10 +271,23 @@ button {
   max-width: 58ch;
 }
 
-/* 深色 About 区域的引导文字提亮并增加轻微发光，防止被背景吃掉 */
-#about .section__lead {
+/* 深色 About 区域的标题与引导文字提亮，防止被背景吃掉 */
+#about .section__title {
   color: #e5e7eb;
-  text-shadow: 0 0 10px rgba(15, 23, 42, 0.9), 0 0 22px rgba(59, 130, 246, 0.8);
+}
+
+#about .section__lead {
+  color: rgba(229, 231, 235, 0.98);
+  text-shadow: 0 0 8px rgba(15, 23, 42, 0.95);
+}
+
+/* 浅色分区（如 section--tint）使用更深的标题色，保持对比度 */
+.section--tint .section__title {
+  color: #0f172a;
+}
+
+.section--tint .section__lead {
+  color: rgba(30, 64, 175, 0.9);
 }
 
 /* Hero */
@@ -554,6 +567,28 @@ button {
   border-radius: 26px;
   border: 1px solid rgba(18, 24, 38, 0.08);
   background: #020617;
+}
+
+/* Hero 主展示图容器：复用插画区域的圆角和边框风格 */
+.hero-media {
+  border-radius: 26px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-media__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover; /* 如果重要内容被裁切太多，可改为 contain */
+  border-radius: 26px;
+}
+
+.art-card:hover .hero-media {
+  border-color: rgba(96, 165, 250, 0.95);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.98);
 }
 
 .art-card__bottom {
