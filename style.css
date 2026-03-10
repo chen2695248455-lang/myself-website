@@ -61,6 +61,16 @@ body {
     #020617;
 }
 
+/* 星空粒子画布：全屏铺底，不挡交互 */
+.ai-particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
 img,
 svg {
   max-width: 100%;
@@ -252,12 +262,19 @@ button {
   font-size: clamp(28px, 3.3vw, 42px);
   margin: 0;
   letter-spacing: -0.03em;
+  font-weight: 900;
 }
 
 .section__lead {
   margin: 0;
-  color: var(--muted);
+  color: rgba(148, 163, 184, 0.95);
   max-width: 58ch;
+}
+
+/* 深色 About 区域的引导文字提亮并增加轻微发光，防止被背景吃掉 */
+#about .section__lead {
+  color: #e5e7eb;
+  text-shadow: 0 0 10px rgba(15, 23, 42, 0.9), 0 0 22px rgba(59, 130, 246, 0.8);
 }
 
 /* Hero */
@@ -301,10 +318,18 @@ button {
   color: #f9fafb;
 }
 
+.hero__title span {
+  font-weight: 800;
+}
+
 .hero__title-accent {
   background: linear-gradient(120deg, #38bdf8, #a855f7, #fb7185);
   -webkit-background-clip: text;
   color: transparent;
+  text-shadow:
+    0 0 18px rgba(56, 189, 248, 0.9),
+    0 0 32px rgba(147, 51, 234, 0.75);
+  font-weight: 900;
 }
 
 .hero__tagline {
@@ -312,7 +337,7 @@ button {
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(148, 163, 184, 0.9);
+  color: rgba(191, 219, 254, 0.98);
 }
 
 .hero__subtitle {
@@ -550,6 +575,68 @@ button {
   font-size: 14px;
 }
 
+/* 头像区域：支持 avatar.jpg + 科技感边框 */
+.avatar-ring {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.avatar-ring__inner {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 28px;
+  padding: 3px;
+  background: conic-gradient(from 210deg, #22d3ee, #6366f1, #fb7185, #22d3ee);
+  box-shadow:
+    0 0 22px rgba(56, 189, 248, 0.8),
+    0 22px 40px rgba(15, 23, 42, 0.98);
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+/* 当没有头像或加载失败时，显示缩写作为兜底 */
+.avatar-ring__initials {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.98));
+  mix-blend-mode: screen;
+}
+
+.avatar-ring__label {
+  margin: 8px 0 0 2px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(209, 213, 219, 0.95);
+}
+
+.art-card:hover .avatar-ring__inner {
+  box-shadow:
+    0 0 32px rgba(56, 189, 248, 0.95),
+    0 28px 52px rgba(15, 23, 42, 0.99);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .avatar-ring__inner {
+    width: 130px;
+    height: 130px;
+  }
+}
+
 /* About */
 .about-grid {
   display: grid;
@@ -630,32 +717,47 @@ button {
 }
 
 .skill__icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 16px;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
   display: grid;
   place-items: center;
-  background: rgba(58, 134, 255, 0.12);
-  border: 1px solid rgba(58, 134, 255, 0.18);
-  color: var(--ink);
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.8), rgba(37, 99, 235, 0.9));
+  border: 1px solid rgba(129, 140, 248, 0.9);
+  color: #eff6ff;
+  box-shadow:
+    0 0 18px rgba(59, 130, 246, 0.85),
+    0 14px 28px rgba(15, 23, 42, 0.85);
+  transition:
+    transform var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    background var(--t-mid) var(--ease);
 }
 
 .skill__icon--pink {
-  background: rgba(255, 77, 109, 0.12);
-  border-color: rgba(255, 77, 109, 0.18);
+  background: radial-gradient(circle at top left, rgba(244, 114, 182, 0.9), rgba(239, 68, 68, 0.9));
+  border-color: rgba(248, 113, 113, 0.95);
 }
 .skill__icon--yellow {
-  background: rgba(255, 227, 107, 0.35);
-  border-color: rgba(255, 227, 107, 0.6);
+  background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.9), rgba(251, 191, 36, 0.95));
+  border-color: rgba(234, 179, 8, 0.95);
 }
 .skill__icon--blue {
-  background: rgba(58, 134, 255, 0.12);
-  border-color: rgba(58, 134, 255, 0.18);
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.9), rgba(59, 130, 246, 0.98));
+  border-color: rgba(96, 165, 250, 0.98);
 }
 
 .icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
+}
+
+/* 技能卡片 hover 时，图标轻微放大并更亮 */
+.skill:hover .skill__icon {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 24px rgba(59, 130, 246, 0.95),
+    0 18px 40px rgba(15, 23, 42, 0.98);
 }
 
 /* 简单“进度条”视觉（技能熟练度） */
@@ -831,6 +933,7 @@ button {
 .contact:hover {
   transform: translateY(-4px);
   box-shadow: 0 22px 50px rgba(15, 23, 42, 0.98);
+  border-color: rgba(59, 130, 246, 0.8);
 }
 
 .contact__icon {
@@ -848,6 +951,8 @@ button {
 .contact__label {
   margin: 0;
   font-weight: 900;
+  color: #e5e7eb;
+  text-shadow: 0 0 8px rgba(15, 23, 42, 0.9);
 }
 
 .contact__value {
@@ -860,7 +965,7 @@ button {
   margin-left: auto;
   font-size: 12px;
   font-weight: 900;
-  color: rgba(18, 24, 38, 0.55);
+  color: rgba(15, 23, 42, 0.85);
   padding: 6px 10px;
   border-radius: 999px;
   background: rgba(18, 24, 38, 0.06);
